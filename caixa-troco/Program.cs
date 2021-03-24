@@ -10,19 +10,29 @@ namespace caixa_troco
 
             Console.WriteLine("Digite o valor do produto:");
             double preco = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Insira o valor pago pelo cliente:");
-            double recebido = Convert.ToDouble(Console.ReadLine());
-            double troco = recebido - preco;
-            if (troco != 0)
-            {
-                Console.WriteLine("Seu troco é de R$" + troco + ". Obrigado(a) pela preferência! Volte sempre!");
-            }
-            else
-            {
-                Console.WriteLine("Obrigado(a) pela preferência! Volte sempre!");
-            }
 
-            //DÚVIDA: Como criar o loop para que o console continue a exibir a primeira instrução enquanto o usuário não apertar "enter" (vazio)?
+            string valorRecebido = "";
+
+            do
+            {
+                Console.WriteLine("Digite o valor recebido:");
+                double recebido = Convert.ToDouble(Console.ReadLine());
+                double troco = recebido - preco;
+
+                if (troco < 0)
+                {
+                    Console.WriteLine("Ops! Você efetuou um pagamento inferior ao valor do produto. Efetue o complemento.");
+                }
+                if (troco == 0)
+                {
+                    Console.WriteLine("Obrigado(a) pela preferência! Volte sempre!");
+                }
+                if (troco > 0)
+                {
+                    Console.WriteLine("Seu troco é de " + troco + ". Obrigado(a) pela preferência! Volte sempre!");
+                }
+            } while (valorRecebido != "");
+             
         }
     }
 }
